@@ -86,3 +86,20 @@ Resources,https://example.com/resources
 .pdf → via PyMuPDF (bounding box + OCR-style matching)
 
 
+## Windows Standalone `.exe`
+
+For Windows users without Python, download the `.exe` from the [Releases](https://github.com/pqexpert/extract-links/releases) page.
+
+### Example:
+```powershell
+extract-links.exe project_plan.docx -o pp_links_out --format csv
+
+### Notes for `.exe` usage:
+Place `extract-links.exe` in the same folder as your input file  
+Or provide the full path to your input file when running  
+
+
+
+
+
+
