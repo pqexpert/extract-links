@@ -1,87 +1,101 @@
-🔗 hyperlink-extractor-jda
+# Hyperlink Extractor
 
-[![PyPI version]( https://badge.fury.io/py/hyperlink-extractor-jda.svg )]( https://pypi.org/project/hyperlink-extractor-jda/ )
+**Turn document hyperlinks into clean, portable data.**
 
-**hyperlink-extractor-jda** is a command-line tool for extracting **text-label + hyperlink pairs** from `.docx`, `.odt`, `.html`, and `.pdf` files.
+`hyperlink-extractor-jda` is a small cross-platform command-line tool that extracts **link text + URL pairs** from common document formats and exports them into formats that are easier to audit, transform, cite, or feed into another workflow.
 
-✨ Supports Windows, Linux, macOS  
-✨ Outputs: `txt`, `csv`, `md`, `json`, `xlsx`  
-✨ Optional deduplication & sorting  
-✨ `.exe` available for Windows users — no Python required
+It supports `.docx`, `.odt`, `.html`, and `.pdf` inputs, with output to `txt`, `csv`, `md`, `json`, or `xlsx`.
 
----
+[![PyPI version](https://badge.fury.io/py/hyperlink-extractor-jda.svg)](https://pypi.org/project/hyperlink-extractor-jda/)
 
-📥 Install
+## Why I built it
+
+A surprising amount of research and document work ends with the same tedious task: *give me the links, preserve their labels, and put them into something I can inspect.*
+
+This utility is intentionally narrow. It does one job, works locally, and produces structured output that can be checked before it becomes part of a larger research or automation pipeline.
+
+## Install
 
 From PyPI:
-bash
 
+```bash
 pip install hyperlink-extractor-jda
+```
 
-From Source
-Clone the repo and install:
+From source:
 
-bash
-
+```bash
 git clone https://github.com/pqexpert/extract-links.git
 cd extract-links
 pip install .
+```
 
-Or run the CLI directly from source:
-bash
+Or run the CLI directly from the source tree:
 
-python -m extract_links.cli [input_file]
+```bash
+python -m extract_links.cli input.docx
+```
 
-🚀 Usage
-CLI example:
-bash
+## Example
 
+```bash
 hyperlink-extractor-jda input.docx -o output --format csv --dedupe --sort
+```
 
-Arguments:
-| Flag       | Description                                   |
-| ---------- | --------------------------------------------- |
-| `input`    | Input file (`.docx`, `.odt`, `.html`, `.pdf`) |
-| `-o`       | Output file prefix (without extension)        |
-| `--format` | `txt`, `csv`, `md`, `json`, `xlsx`            |
-| `--dedupe` | Deduplicate URLs                              |
-| `--sort`   | Sort by label                                 |
+| Flag | Purpose |
+| --- | --- |
+| `input` | Source file: `.docx`, `.odt`, `.html`, or `.pdf` |
+| `-o` | Output filename prefix |
+| `--format` | `txt`, `csv`, `md`, `json`, or `xlsx` |
+| `--dedupe` | Remove duplicate URLs |
+| `--sort` | Sort results by link label |
 
-📋 Output Example
-CSV
+Example CSV output:
+
+```csv
 Text,URL
 Project Plan,https://example.com/plan
 Resources,https://example.com/resources
+```
 
-Markdown
+Example Markdown output:
+
+```md
 [Project Plan](https://example.com/plan)
 [Resources](https://example.com/resources)
+```
 
-📚 Supported Formats
-.docx → via python-docx
+## Format support
 
-.odt → via odfpy
+- `.docx` — `python-docx`
+- `.odt` — `odfpy`
+- `.html` — Beautiful Soup
+- `.pdf` — PyMuPDF-based extraction and matching
 
-.html → via BeautifulSoup
+## Windows standalone build
 
-.pdf → via PyMuPDF (bounding box + OCR-style matching)
+A Windows executable is available from the repository’s [Releases](https://github.com/pqexpert/extract-links/releases) page for users who do not want to install Python.
 
-🖥️ Windows Standalone .exe
-For Windows users without Python, download the .exe from the GitHub Releases page. https://github.com/pqexpert/extract-links/releases 
+Typical use:
 
-Powershell Example:
-
+```powershell
 extract-links.exe project_plan.docx -o output_links --format csv
+```
 
-Notes for .exe usage:
-✅ Place extract-links.exe in the same folder as your input file, or
-✅ Provide the full path to your input file when running
+## Operating assumptions
 
-📦 Project Links
-🔗 PyPI https://pypi.org/project/hyperlink-extractor-jda/
-💻 GitHub https://github.com/pqexpert/extract-links
+- Input documents are processed locally by the tool; the project does not require a hosted extraction service.
+- Document parsers can encounter malformed or unusual files, so important results should still be reviewed before downstream use.
+- PDF link extraction is inherently less uniform than extracting links from structured document formats; treat edge cases as data-quality problems, not invisible certainty.
 
-📜 License
-MIT License
+## Project links
 
-Built with ❤️ by pqexpert https://github.com/pqexpert ✨
+- [PyPI package](https://pypi.org/project/hyperlink-extractor-jda/)
+- [GitHub repository](https://github.com/pqexpert/extract-links)
+- [PQExpert.io](https://pqexpert.io/) — broader technical and professional portfolio
+
+## License
+
+MIT License.
+
+Built by **pqexpert / Josh Allen** as a practical document-processing utility: small surface area, inspectable output, and no ceremony beyond what the problem requires.
