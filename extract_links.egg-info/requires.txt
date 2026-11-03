@@ -1,6 +1,0 @@
-beautifulsoup4
-python-docx
-odfpy
-openpyxl
-PyMuPDF
-lxml

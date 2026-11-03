@@ -2,7 +2,7 @@
 
 **Turn document hyperlinks into clean, portable data.**
 
-`hyperlink-extractor-jda` is a small cross-platform command-line tool that extracts **link text + URL pairs** from common document formats and exports them into formats that are easier to audit, transform, cite, or feed into another workflow.
+`extract-links` is a small cross-platform command-line tool that extracts **link text + URL pairs** from common document formats and exports them into formats that are easier to audit, transform, cite, or feed into another workflow. The published PyPI distribution is named `hyperlink-extractor-jda`; the command is `extract-links`.
 
 It supports `.docx`, `.odt`, `.html`, and `.pdf` inputs, with output to `txt`, `csv`, `md`, `json`, or `xlsx`.
 
@@ -16,13 +16,13 @@ This utility is intentionally narrow. It does one job, works locally, and produc
 
 ## Install
 
-From PyPI:
+Install the published release from PyPI:
 
 ```bash
 pip install hyperlink-extractor-jda
 ```
 
-From source:
+Or install this repository from source (its package metadata uses `extract-links`):
 
 ```bash
 git clone https://github.com/pqexpert/extract-links.git
@@ -30,7 +30,7 @@ cd extract-links
 pip install .
 ```
 
-Or run the CLI directly from the source tree:
+After installing the dependencies, you can also run the CLI directly from the source tree:
 
 ```bash
 python -m extract_links.cli input.docx
@@ -39,7 +39,7 @@ python -m extract_links.cli input.docx
 ## Example
 
 ```bash
-hyperlink-extractor-jda input.docx -o output --format csv --dedupe --sort
+extract-links input.docx -o output --format csv --dedupe --sort
 ```
 
 | Flag | Purpose |

@@ -10,3 +10,6 @@ build/
 *.log
 .venv/
 .env/
+.env
+.env.*
+!.env.example
